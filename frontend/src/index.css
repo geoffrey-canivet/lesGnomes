@@ -17,7 +17,7 @@ body {
 @tailwind utilities;
 
 @layer components {
-  .title {
+  .font-title {
     font-family: "title", sans-serif;
   }
 }

@@ -1,9 +1,10 @@
 import {Outlet} from "react-router-dom";
-import { Footer, Header, Navbar } from "@/components";
+import { Footer, Navbar } from "@/components";
+/*import { Footer, Header, Navbar } from "@/components";*/
 
 const HomeLayout = () => {
     return <>
-        <Header/>
+        {/*<Header/>*/}
         <Navbar/>
         <Outlet/>
         <Footer/>
