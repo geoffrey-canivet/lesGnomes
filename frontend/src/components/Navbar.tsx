@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import logoNav from "../assets/img/favicon2.svg";
+import { NavLink } from "react-router-dom";
+{/*import logoNav from "../assets/img/favicon2.svg";*/}
+import logoNav from "../assets/img/navIconGreen-900.png";
 import React, { useState, useRef, useEffect } from 'react';
 
 const Navbar: React.FC = () => {
@@ -34,8 +36,10 @@ const Navbar: React.FC = () => {
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/">
                     <div className="flex items-center space-x-3 rtl:space-x-reverse">
-                        <img src={logoNav} className="h-8" alt="gnome Logo" />
-                        <span className="font-title self-center text-2xl font-semibold whitespace-nowrap text-white">
+                        <div className="shadow-green w-7 h-7 flex items-center justify-center rounded-full bg-[#B5834F]">
+                            <img src={logoNav} className="h-4 object-contain" alt="gnome Logo" />
+                        </div>
+                        <span className="text-shadow-green font-title self-center text-2xl font-semibold whitespace-nowrap text-[#B5834F]">
                             Les Gnomes De Martine
                         </span>
                     </div>
@@ -70,36 +74,60 @@ const Navbar: React.FC = () => {
                     className={`${isNavOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`}
                     id="navbar-dropdown"
                 >
-                    <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
+                    <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-[#B5834F] rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
                         {/* Accueil */}
                         <li>
-                            <Link to="/" className="block py-2 px-3 text-white rounded-sm md:bg-transparent md:p-0">
+                            <NavLink
+                                to="/"
+                                className={({ isActive }) =>
+                                    [
+                                        "block py-2 px-3 rounded-sm md:bg-transparent md:p-0 transition-colors duration-300",
+                                        isActive ? "text-[#B5834F] text-shadow-green underline" : "text-white hover:text-[#B5834F] hover:text-shadow-green"
+                                    ].join(" ")
+                                }
+                            >
                                 Accueil
-                            </Link>
+                            </NavLink>
                         </li>
                         {/* À propos */}
                         <li>
-                            <Link to="/about" className="block py-2 px-3 text-white rounded-sm md:bg-transparent md:p-0">
+                            <NavLink
+                                to="/about"
+                                className={({ isActive }) =>
+                                    [
+                                        "block py-2 px-3 rounded-sm md:bg-transparent md:p-0 transition-colors duration-300",
+                                        isActive ? "text-[#B5834F] text-shadow-green underline" : "text-white hover:text-[#B5834F] hover:text-shadow-green"
+                                    ].join(" ")
+                                }
+                            >
                                 À propos
-                            </Link>
+                            </NavLink>
                         </li>
                         {/* Atelier */}
                         <li>
-                            <Link to="/workshop" className="block py-2 px-3 text-white rounded-sm md:bg-transparent md:p-0">
+                            <NavLink
+                                to="/workshop"
+                                className={({ isActive }) =>
+                                    [
+                                        "block py-2 px-3 rounded-sm md:bg-transparent md:p-0 transition-colors duration-300",
+                                        isActive ? "text-[#B5834F] text-shadow-green underline" : "text-white hover:text-[#B5834F] hover:text-shadow-green"
+                                    ].join(" ")
+                                }
+                            >
                                 Atelier
-                            </Link>
+                            </NavLink>
                         </li>
                         {/* Gallerie Dropdown */}
                         <li className="relative" ref={dropdownRef}>
                             <button
                                 onClick={toggleDropdown}
-                                className="flex items-center justify-between w-full py-2 px-3 text-white rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto"
+                                className="flex items-center justify-between w-full py-2 px-3 text-white rounded-sm hover:text-[#B5834F] md:hover:bg-transparent md:border-0  md:p-0 md:w-auto"
                                 aria-expanded={isDropdownOpen}
                                 aria-controls="dropdownNavbar"
                                 id="dropdownNavbarLink"
                                 type="button"
                             >
-                                Gallerie
+                                Crétations
                                 <svg
                                     className="w-2.5 h-2.5 ms-2.5"
                                     aria-hidden="true"
@@ -119,59 +147,106 @@ const Navbar: React.FC = () => {
                             {/* Dropdown menu */}
                             <div
                                 id="dropdownNavbar"
-                                className={`z-10 font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600 absolute left-0 top-full mt-2 ${
+                                className={`bg-green-800 border-b-2 border-green-900 shadow-[0_6px_10px_-4px_rgba(0,0,0,0.35)] z-10 font-normal  rounded-lg w-44 absolute left-0 top-full mt-2 ${
                                     isDropdownOpen ? '' : 'hidden'
                                 }`}
                                 aria-labelledby="dropdownNavbarLink"
                             >
-                                <ul className="py-2 text-sm text-gray-700 dark:text-gray-400">
+                                <ul className="py-2 text-sm text-white">
                                     <li>
-                                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                            Dashboard
+                                        <a href="#" className="block px-4 py-2 hover:text-[#B5834F]">
+                                            Toutes les créations
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                            Settings
+                                        <a href="#" className="block px-4 py-2 hover:text-[#B5834F]">
+                                            Gnomes
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                            Earnings
+                                        <a href="#" className="block px-4 py-2 hover:text-[#B5834F]">
+                                            Maisons
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="#" className="block px-4 py-2 hover:text-[#B5834F]">
+                                            Lampes
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" className="block px-4 py-2 hover:text-[#B5834F]">
+                                            Autres
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" className="block px-4 py-2 hover:text-[#B5834F]">
+                                            Fées
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" className="block px-4 py-2 hover:text-[#B5834F]">
+                                            Boites
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" className="block px-4 py-2 hover:text-[#B5834F]">
+                                            Chateaux
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" className="block px-4 py-2 hover:text-[#B5834F]">
+                                            Attrape rêve
+                                        </a>
+                                    </li>
+
                                 </ul>
-                                <div className="py-1">
-                                    <a
-                                        href="#"
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                                    >
-                                        Sign out
-                                    </a>
-                                </div>
                             </div>
                         </li>
                         {/* Media */}
                         <li>
-                            <Link to="/media" className="block py-2 px-3 text-white rounded-sm md:bg-transparent md:p-0">
+                            <NavLink
+                                to="/media"
+                                className={({ isActive }) =>
+                                    [
+                                        "block py-2 px-3 rounded-sm md:bg-transparent md:p-0 transition-colors duration-300",
+                                        isActive ? "text-[#B5834F] text-shadow-green underline" : "text-white hover:text-[#B5834F] hover:text-shadow-green"
+                                    ].join(" ")
+                                }
+                            >
                                 Media
-                            </Link>
+                            </NavLink>
                         </li>
                         {/* Evenements */}
                         <li>
-                            <Link to="/news" className="block py-2 px-3 text-white rounded-sm md:bg-transparent md:p-0">
+                            <NavLink
+                                to="/news"
+                                className={({ isActive }) =>
+                                    [
+                                        "block py-2 px-3 rounded-sm md:bg-transparent md:p-0 transition-colors duration-300",
+                                        isActive ? "text-[#B5834F] text-shadow-green underline" : "text-white hover:text-[#B5834F] hover:text-shadow-green"
+                                    ].join(" ")
+                                }
+                            >
                                 Evenements
-                            </Link>
+                            </NavLink>
                         </li>
                         {/* Contact */}
                         <li>
-                            <Link to="/contact" className="block py-2 px-3 text-white rounded-sm md:bg-transparent md:p-0">
+                            <NavLink
+                                to="/contact"
+                                className={({ isActive }) =>
+                                    [
+                                        "block py-2 px-3 rounded-sm md:bg-transparent md:p-0 transition-colors duration-300",
+                                        isActive ? "text-[#B5834F] text-shadow-green underline" : "text-white hover:text-[#B5834F] hover:text-shadow-green"
+                                    ].join(" ")
+                                }
+                            >
                                 Contact
-                            </Link>
+                            </NavLink>
                         </li>
                         {/* Boutique */}
                         <li>
-                            <Link to="/shop" className="ml-10 text-green-700 bg-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">
+                            <Link to="/shop" className="shadow-green ml-10 text-white bg-[#B5834F] hover:bg-white hover:text-[#B5834F] focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">
                                 Boutique
                             </Link>
                         </li>
